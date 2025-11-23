@@ -1,151 +1,178 @@
-# SauceDemo Test Automation Framework
+# 🚀 SwagLabs Automation Test Suite
 
-# 🧩 Tools & Technologies
+A fully automated UI testing framework for **SwagLabs** ([https://www.saucedemo.com](https://www.saucedemo.com)) built using modern testing technologies including **Java**, **Selenium WebDriver**, **Cucumber BDD**, **TestNG**, **Maven**, and the **Page Object Model (POM)** design pattern. Reporting is powered by **Extent Reports** and **Allure Reports**.
 
-| Component             | Technology              |
-| --------------------- | ----------------------- |
-| UI Automation         | Selenium WebDriver      |
-| BDD                   | Cucumber + Gherkin      |
-| Test Runner           | TestNG                  |
-| Language              | Java                    |
-| Reporting             | Extent, Allure          |
-| Design Pattern        | Page Object Model (POM) |
-| Dependency Management | Maven                   |
+---
 
-***
+## 🧰 **Tech Stack**
 
+| Category                 | Tool / Framework               |
+| ------------------------ | ------------------------------ |
+| **Programming Language** | Java                           |
+| **Automation Framework** | Selenium WebDriver             |
+| **Test Framework**       | TestNG                         |
+| **BDD Framework**        | Cucumber (Gherkin)             |
+| **Build Tool**           | Maven                          |
+| **Design Pattern**       | Page Object Model (POM)        |
+| **Reporting**            | Extent Reports, Allure Reports |
 
-# 🧪 Positive Test Scenarios
+---
 
-Below are the key end-to-end scenarios automated in this framework:
+## 📖 **Overview**
 
-### ✅ 1. Verify User Can Log In Successfully
+This project automates end-to-end test scenarios for SwagLabs including login, product selection, shopping cart validation, checkout workflow, and logout. Both **positive** and **negative** test scenarios are included to ensure robust and reliable test coverage.
 
-* Enter valid credentials
-* Click Login
-* Assert user is redirected to **Products** page
+---
 
-### ✅ 2. Add First Product to Cart
+## 📦 **Project Structure**
 
-* Select first product
-* Click **Add to Cart**
-* Verify cart badge = 1
+```
+src
+├── main
+│   └── java/com/swaglabs/
+│       ├── pages/                 # Page Objects (POM Structure)
+│       └── utils/                 # Driver Factory, Config Loader
+└── test
+    └── java/com/swaglabs/
+        ├── steps/                 # Step Definitions
+        ├── runners/               # Cucumber + TestNG Runners
+        └── resources/features/    # Gherkin Feature Files
 
-### ✅ 3. Add Second Product to Cart
+pom.xml
+README.md
+```
 
-* Add another item
-* Verify cart badge = 2
+---
 
-### ✅ 4. Verify Total Price Calculation
+# ✅ **Positive Test Scenarios**
 
-* Go to cart
-* Proceed to **Checkout: Overview** page
-* Validate item total, tax, and final total
+### **1. Verify That User Can Log In Successfully**
 
-### ✅ 5. Proceed to Checkout
+* Navigate to login page
+* Enter valid username & password
+* User should be redirected to Products page
 
-* Fill First Name, Last Name, Zip Code
-* Continue → Finish
-* Verify **Order Confirmation** message
+### **2. Add First Product to Cart**
 
-### ✅ 6. Verify Logout Functionality
+* Add first product
+* Verify cart counter updates to **1**
+
+### **3. Add Second Product to Cart**
+
+* Add another product
+* Verify cart badge is **2**
+
+### **4. Verify Total Price Calculation**
+
+* Navigate to cart
+* Ensure individual prices match
+* Verify tax and total price accuracy on checkout overview
+
+### **5. Proceed to Checkout**
+
+* Enter checkout details
+* Verify navigation to confirmation page
+* Successfully complete order
+
+### **6. Verify Logout Functionality**
 
 * Open burger menu
-* Click Logout
-* User is redirected to login page
+* Click **Logout**
+* Verify user is redirected to login page
 
 ---
 
-# ❌ Negative Test Scenarios
+# ❌ **Negative Test Scenarios**
 
-### ❗ 1. Invalid Login Credentials
+### **1. Invalid Login Credentials**
 
 * Enter invalid username/password
-* Verify error message
+* Validate the error message displayed
 
-### ❗ 2. Locked-Out User
+### **2. Locked-Out User**
 
-* Login using `locked_out_user`
-* Verify blocked access message
+* Attempt login with `locked_out_user`
+* Expect appropriate locked-out error message
 
-### ❗ 3. Checkout With Missing Information
+### **3. Checkout With Missing Information**
 
-* Leave First Name / Last Name / Zipcode empty
-* Verify mandatory field validation messages
+* Attempt checkout with empty form fields
+* Validate error message (e.g., *"First Name is required"*)
 
-### ❗ 4. Remove Item From Cart
+### **4. Remove Item From Cart**
 
-* Add product
-* Remove product from cart page
-* Verify the item is removed
-
----
-
-# 📁 Framework Structure
-
-```
-ProjectWEBTesting
-│── src/test/java
-│   ├── features
-│   ├── stepDefinitions
-│   ├── runners
-│   └── pages (POM)
-│
-│── src/main/java
-│   └── utilities
-│
-│── src/test/resources
-│   ├── extent-config.xml
-│   └── allure.properties
-│
-│── pom.xml
-│── testng.xml
-│── README.md
-```
+* Add product to cart
+* Remove item
+* Verify cart is empty
 
 ---
 
-# 🧩 Tools & Technologies
+## ▶️ **Running Tests**
 
-| Component             | Technology              |
-|-----------------------|-------------------------|
-| UI Automation         | Selenium WebDriver      |
-| BDD                   | Cucumber + Gherkin      |
-| Test Runner           | TestNG                  |
-| Language              | Java                    |
-| Reporting             | Extent, Allure          |
-| Design Pattern        | Page Object Model (POM) |
-| Dependency Management | Maven                   |
-
-***
-
-# 📊 Reporting
-
-### **Extent Report**
-
-* Auto-generated HTML report after execution
-
-### **Allure Report**
-
-* Rich graphical test analytics
-* Includes screenshots for failed tests
-
----
-
-# ▶️ How to Run Tests
+Run full suite:
 
 ```
 mvn clean test
 ```
 
-Or run via **TestNG XML** or **Cucumber Runner Class**.
+Run specific TestNG-Cucumber runner:
+
+```
+mvn -Dtest=TestRunner test
+```
+
+Run with different browser:
+
+```
+mvn clean test -Dbrowser=firefox
+```
 
 ---
 
-If you want:
-✨ badges,
-📌 screenshots,
-📁 diagrams,
-⚙️ setup instructions, or
-🚀 CI/CD pipeline…
-just tell me and I’ll add them! 😄
+## 📊 **Reporting**
+
+### **Extent Report**
+
+Generated under:
+
+```
+target/extent-report/index.html
+```
+
+### **Allure Report**
+
+Generate report via:
+
+```
+allure serve allure-results
+```
+
+---
+
+## 🧱 **Framework Highlights**
+
+* Clean & maintainable POM structure
+* BDD approach for readability
+* Centralized WebDriver factory
+* Reusable utilities and helper functions
+* Configurable execution via Maven parameters
+
+---
+
+## 🤝 **Contributing Guidelines**
+
+1. Fork repository
+2. Create your feature branch
+3. Commit changes
+4. Run full test suite
+5. Submit Pull Request
+
+---
+
+## 📜 **License**
+
+MIT License
+
+---
+
+### ✨ *Professional, scalable, and reliable automation — powered by SwagLabs Test Suite!* ✨
