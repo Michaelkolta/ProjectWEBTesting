@@ -124,15 +124,4 @@ Run full test suite:
 mvn clean test
 ```
 
-Or execute using **TestNG XML** or the **Cucumber Runner Class**.
 
----
-
-If you want:
-✨ badges  
-📌 screenshots  
-📁 diagrams  
-⚙️ installation steps  
-🚀 CI/CD pipeline (GitHub Actions / Jenkins)
-
-Just tell me — I can add them! 😄
