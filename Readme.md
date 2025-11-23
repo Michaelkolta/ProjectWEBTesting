@@ -117,11 +117,6 @@ ProjectWEBTesting
 
 ---
 
-# ▶️ How to Run Tests
-
-Run full test suite:
-```
-mvn clean test
 ```
 
 
